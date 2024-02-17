@@ -102,7 +102,7 @@ function NavigationController(props) {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {true ? (
+        {user ? (
           <Stack.Screen
             name="MainApp"
             component={MainAppTabs}
@@ -110,8 +110,16 @@ function NavigationController(props) {
           />
         ) : (
           <>
-            <Stack.Screen name="Signup" component={SignupScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Login"
+              component={LoginScreen}
+            />
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Signup"
+              component={SignupScreen}
+            />
           </>
         )}
       </Stack.Navigator>

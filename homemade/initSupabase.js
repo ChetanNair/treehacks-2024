@@ -7,5 +7,7 @@ export const supabase = createClient(
   {
     localStorage: AsyncStorage,
     detectSessionInUrl: false, // Prevents Supabase from evaluating window.location.href, breaking mobile
+    autoRefreshToken: true,
+    persistSession: true,
   }
 );

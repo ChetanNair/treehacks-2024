@@ -1,7 +1,16 @@
 import React from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  Touchable,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { useState } from "react";
 import { supabase } from "../initSupabase";
+import { SafeAreaView } from "react-native-safe-area-context";
 export const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +27,14 @@ export const LoginScreen = (props) => {
     }
   }
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        alignItems: "center",
+        // justifyContent: "center",
+        // position: "relative",
+      }}
+    >
       <Text>Login Screen</Text>
       <TextInput
         placeholder="Email"
@@ -36,6 +52,6 @@ export const LoginScreen = (props) => {
         title="Go to Signup Page"
         onPress={() => props.navigation.navigate("Signup")}
       />
-    </View>
+    </SafeAreaView>
   );
 };
