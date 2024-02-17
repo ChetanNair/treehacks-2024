@@ -1,15 +1,6 @@
-import React from 'react';
-import { View, Text, TouchableOpacity} from 'react-native';
+import React from "react";
+import { MealList } from "../components/MealList";
 
-export const HomeScreen = ({navigation}) => {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('DetailScreen')}>
-        <Text>Go to Details</Text>
-      </TouchableOpacity>
-    </View>
-  );
+export const HomeScreen = ({ navigation }) => {
+  return <MealList navigation={navigation} />;
 };
-
