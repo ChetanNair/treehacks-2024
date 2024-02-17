@@ -1,16 +1,16 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
-export const ConfirmationScreen = ({ navigation }) => {
+export const PaymentScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Confirmation Screen</Text>
+      <Text>Payment Screen</Text>
       <TouchableOpacity
         onPress={() => {
           navigation.popToTop();
         }}
       >
-        <Text>Done</Text>
+        <Text>Pay</Text>
       </TouchableOpacity>
     </View>
   );
