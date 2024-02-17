@@ -62,19 +62,11 @@ function NavigationController(props) {
     <NavigationContainer>
       <Stack.Navigator>
         {user ? (
-          <>
-            <Stack.Screen
-              name="MainApp"
-              component={MainAppTabs}
-              options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
-              name="DetailStack"
-              component={DetailStack}
-              options={{ headerShown: false, presentation: "modal" }}
-            />
-          </>
+          <Stack.Screen
+            name="MainApp"
+            component={MainAppTabs}
+            options={{ headerShown: false }}
+          />
         ) : (
           <>
             <Stack.Screen

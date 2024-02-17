@@ -65,19 +65,55 @@ export const SignupScreen = (props) => {
         </Text>
       </View>
       <View style={{ flex: 0.85 }}>
-        <Text>Signup Screen</Text>
-        <TextInput
-          placeholder="Email"
-          autoCapitalize="none"
-          onChangeText={(email) => setEmail(email)}
-        />
+        <View
+          style={{
+            width: 300,
+            height: 60,
+            fontSize: 32,
+            backgroundColor: "white",
+            // borderWidth: 1,
+            borderRadius: 20,
+            flexDirection: "row",
+            paddingHorizontal: 12,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 4,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: 4.65,
+
+            elevation: 2,
+          }}
+        >
+          <Image
+            resizeMode="contain"
+            source={require("../assets/user.png")}
+            style={{ width: 24, height: 24, alignSelf: "center" }}
+          />
+          <TextInput
+            style={{
+              width: 300,
+              height: 60,
+              fontSize: 20,
+              borderRadius: 20,
+              paddingHorizontal: 12,
+            }}
+            autoCorrect={false}
+            numberOfLines={1}
+            placeholder="Email"
+            autoCapitalize="none"
+            onChangeText={(email) => setEmail(email)}
+          />
+        </View>
+
         <TextInput
           placeholder="password"
           autoCapitalize="none"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
         />
-        <Button title="Sign up" onPress={handleSignup} />
+        <Button style={{}} title="Sign up" onPress={handleSignup} />
         <Button
           title="Go to Login Page"
           onPress={() => props.navigation.navigate("Login")}
