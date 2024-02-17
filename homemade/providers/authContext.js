@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
   const [session, setSession] = useState(null);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -18,15 +19,19 @@ export const AuthProvider = (props) => {
       async (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
+        setInitialized(true);
       }
     );
 
     return () => {
-      authListener.unsubscribe();
+      authListener.subscription.unsubscribe();
     };
   }, []);
+  const signOut = async () => {
+    await supabase.auth.signOut();
+  };
   return (
-    <AuthContext.Provider value={{ user, session }}>
+    <AuthContext.Provider value={{ user, session, initialized, signOut }}>
       {props.children}
     </AuthContext.Provider>
   );
