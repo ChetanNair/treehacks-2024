@@ -10,6 +10,7 @@ import { HomeScreen } from "./screens/HomeScreen";
 import { DetailScreen } from "./screens/DetailScreen";
 import { ConfirmationScreen } from "./screens/ConfirmationScreen";
 import { MapScreen } from "./screens/MapScreen";
+import { ProfileScreen } from "./screens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,6 +31,7 @@ function MainAppTabs() {
     <Tab.Navigator>
       <Tab.Screen name="HomeTab" component={HomeScreen} />
       <Tab.Screen name="MapScreen" component={MapScreen} />
+      <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
