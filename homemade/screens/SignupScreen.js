@@ -11,6 +11,108 @@ import {
 import { supabase } from "../initSupabase";
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  Input,
+  Icon,
+  Stack,
+  Pressable,
+  Center,
+  NativeBaseProvider,
+} from "native-base";
+import { MaterialIcons } from "@expo/vector-icons";
+
+const Example = () => {
+  const [show, setShow] = React.useState(false);
+  return (
+    <Stack space={4} w="100%" alignItems="center">
+      <Input
+        w={{
+          base: "75%",
+          md: "25%",
+        }}
+        InputLeftElement={
+          <Icon
+            as={<MaterialIcons name="person" />}
+            size={5}
+            ml="2"
+            color="muted.400"
+          />
+        }
+        placeholder="First Name"
+      />
+      <Input
+        w={{
+          base: "75%",
+          md: "25%",
+        }}
+        InputLeftElement={
+          <Icon
+            as={<MaterialIcons name="person" />}
+            size={5}
+            ml="2"
+            color="muted.400"
+          />
+        }
+        placeholder="Last Name"
+      />
+      <Input
+        w={{
+          base: "75%",
+          md: "25%",
+        }}
+        InputLeftElement={
+          <Icon
+            as={<MaterialIcons name="email" />}
+            size={5}
+            ml="2"
+            color="muted.400"
+          />
+        }
+        placeholder="Email"
+      />
+      <Input
+        w={{
+          base: "75%",
+          md: "25%",
+        }}
+        type={show ? "text" : "password"}
+        InputRightElement={
+          <Pressable onPress={() => setShow(!show)}>
+            <Icon
+              as={
+                <MaterialIcons name={show ? "visibility" : "visibility-off"} />
+              }
+              size={5}
+              mr="2"
+              color="muted.400"
+            />
+          </Pressable>
+        }
+        placeholder="Password"
+      />
+      <Input
+        w={{
+          base: "75%",
+          md: "25%",
+        }}
+        type={show ? "text" : "password"}
+        InputRightElement={
+          <Pressable onPress={() => setShow(!show)}>
+            <Icon
+              as={
+                <MaterialIcons name={show ? "visibility" : "visibility-off"} />
+              }
+              size={5}
+              mr="2"
+              color="muted.400"
+            />
+          </Pressable>
+        }
+        placeholder="Confirm Password"
+      />
+    </Stack>
+  );
+};
 
 export const SignupScreen = (props) => {
   const [email, setEmail] = useState("");
@@ -56,7 +158,8 @@ export const SignupScreen = (props) => {
         </Text>
       </View>
       <View style={{ flex: 0.85 }}>
-        <View
+        <Example />
+        {/* <View
           style={{
             width: 300,
             height: 60,
@@ -96,14 +199,15 @@ export const SignupScreen = (props) => {
             autoCapitalize="none"
             onChangeText={(email) => setEmail(email)}
           />
-        </View>
-        <TextInput
+        </View> */}
+
+        {/* <TextInput
           placeholder="password"
           autoCapitalize="none"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
-        />
-        <Button title="Sign up" onPress={handleSignup} />
+        /> */}
+        <Button style={{}} title="Sign up" onPress={handleSignup} />
         <Button
           title="Already have an account? Login"
           onPress={() => props.navigation.navigate("Login")}

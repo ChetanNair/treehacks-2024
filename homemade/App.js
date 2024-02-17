@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useState, useContext } from "react";
 import { Image } from "react-native";
+import { NativeBaseProvider } from "native-base";
 
 // Import Screens
 import { LoginScreen } from "./screens/LoginScreen";
@@ -125,7 +126,9 @@ function App() {
   return (
     <SafeAreaProvider>
       <AuthProvider>
-        <NavigationController />
+        <NativeBaseProvider>
+          <NavigationController />
+        </NativeBaseProvider>
       </AuthProvider>
     </SafeAreaProvider>
   );
