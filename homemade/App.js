@@ -2,7 +2,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+import { useState, useEffect, useContext } from "react";
 // Import Screens
 import { LoginScreen } from "./screens/LoginScreen";
 import { SignupScreen } from "./screens/SignupScreen";
@@ -11,7 +11,7 @@ import { DetailScreen } from "./screens/DetailScreen";
 import { ConfirmationScreen } from "./screens/ConfirmationScreen";
 import { MapScreen } from "./screens/MapScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
-
+import { AuthContext, AuthProvider } from "./providers/authContext";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -36,35 +36,45 @@ function MainAppTabs() {
   );
 }
 
+function NavigationController(props) {
+  const auth = useContext(AuthContext);
+  const user = auth.user;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        {user ? (
+          <>
+            <Stack.Screen
+              name="MainApp"
+              component={MainAppTabs}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name="DetailStack"
+              component={DetailStack}
+              options={{ headerShown: false, presentation: "modal" }}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen name="Signup" component={SignupScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
 // Main navigation setup
 function App() {
-  const isSignedIn = true;
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          {isSignedIn ? (
-            <>
-              <Stack.Screen name="Login" component={LoginScreen} />
-              <Stack.Screen name="Signup" component={SignupScreen} />
-            </>
-          ) : (
-            <>
-              <Stack.Screen
-                name="MainApp"
-                component={MainAppTabs}
-                options={{ headerShown: false }}
-              />
-
-              <Stack.Screen
-                name="DetailStack"
-                component={DetailStack}
-                options={{ headerShown: false, presentation: "modal" }}
-              />
-            </>
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
+      <AuthProvider>
+        <NavigationController />
+      </AuthProvider>
     </SafeAreaProvider>
   );
 }
