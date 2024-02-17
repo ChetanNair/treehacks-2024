@@ -14,7 +14,7 @@ export const LoginScreen = (props) => {
       console.log("Something went wrong");
     }
     if (error) {
-      alert(error);
+      alert(error); // TODO: Wrong email / password
     }
   }
   return (
