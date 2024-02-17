@@ -3,7 +3,7 @@ import { FlatList } from "react-native";
 import { MealItem } from "./MealItem";
 
 
-const placeholder = "https://lh3.googleusercontent.com/proxy/XXvCwMT5tNyiMYl1H5s2ebhi5GiisJo1P0N3eyhftD2S1_IQpSvA5JGeJcu7-dHA55nUyS5tDuckAYJFNg_N5AJ-_Ba-xbxYIboO5CxWNSnuxIFANs1Mse0cGIe4UdJPCw"
+const placeholder = "https://toriavey.com/images/2011/01/TOA109_18-1.jpeg"
 
 // Sample data for the list
 const DATA = [
@@ -22,56 +22,28 @@ const DATA = [
     rating: "4.7",
   },
   {
-    id: "1",
+    id: "3",
     title: "Item 1",
     description: "This is a description for item 1.",
     imageUrl: placeholder,
     rating: "4.5",
   },
   {
-    id: "2",
+    id: "4",
     title: "Item 2",
     description: "This is a description for item 2.",
     imageUrl: placeholder,
     rating: "4.7",
   },
   {
-    id: "1",
+    id: "5",
     title: "Item 1",
     description: "This is a description for item 1.",
     imageUrl: placeholder,
     rating: "4.5",
   },
   {
-    id: "2",
-    title: "Item 2",
-    description: "This is a description for item 2.",
-    imageUrl: placeholder,
-    rating: "4.7",
-  },
-  {
-    id: "1",
-    title: "Item 1",
-    description: "This is a description for item 1.",
-    imageUrl: placeholder,
-    rating: "4.5",
-  },
-  {
-    id: "2",
-    title: "Item 2",
-    description: "This is a description for item 2.",
-    imageUrl: placeholder,
-    rating: "4.7",
-  },
-  {
-    id: "1",
-    title: "Item 1",
-    description: "This is a description for item 1.",
-    imageUrl: placeholder,
-    rating: "4.5",
-  },
-  {
-    id: "2",
+    id: "6",
     title: "Item 2",
     description: "This is a description for item 2.",
     imageUrl: placeholder,

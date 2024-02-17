@@ -2,7 +2,9 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
+import { Image } from "react-native";
+
 // Import Screens
 import { LoginScreen } from "./screens/LoginScreen";
 import { SignupScreen } from "./screens/SignupScreen";
@@ -38,19 +40,58 @@ function HomeScreenStack() {
 // Tabs for the main app
 function MainAppTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{ tabBarShowLabel: false }}>
       <Tab.Screen
         name="Home"
         component={HomeScreenStack}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ size }) => (
+            <Image
+              source={require("./assets/home.png")}
+              style={{ width: size, height: size }}
+            />
+          ),
+        }}
       />
       <Tab.Screen
         name="Map"
         component={MapScreenStack}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ size }) => (
+            <Image
+              source={require("./assets/map.png")}
+              style={{ width: size, height: size }}
+            />
+          ),
+        }}
       />
-      <Tab.Screen name="My Meals" component={ProfileScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      {/* TODO: Change component */}
+      <Tab.Screen
+        name="My Meals"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ size }) => (
+            <Image
+              source={require("./assets/meal.png")}
+              style={{ width: size, height: size }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ size }) => (
+            <Image
+              source={require("./assets/profile.png")}
+              style={{ width: size, height: size }}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
