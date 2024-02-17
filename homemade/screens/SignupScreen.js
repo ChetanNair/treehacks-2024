@@ -41,16 +41,7 @@ export const SignupScreen = (props) => {
           zIndex: 1,
         }}
         onPress={() => props.navigation.navigate("Login")}
-      >
-        <Image
-          resizeMode="contain"
-          style={{
-            width: 50,
-            zIndex: 0,
-          }}
-          source={require("../assets/left_arrow.png")}
-        />
-      </TouchableOpacity>
+      ></TouchableOpacity>
       <View
         style={{
           flex: 0.15,
@@ -106,16 +97,15 @@ export const SignupScreen = (props) => {
             onChangeText={(email) => setEmail(email)}
           />
         </View>
-
         <TextInput
           placeholder="password"
           autoCapitalize="none"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
         />
-        <Button style={{}} title="Sign up" onPress={handleSignup} />
+        <Button title="Sign up" onPress={handleSignup} />
         <Button
-          title="Go to Login Page"
+          title="Already have an account? Login"
           onPress={() => props.navigation.navigate("Login")}
         />
       </View>

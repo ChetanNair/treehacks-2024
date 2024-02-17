@@ -101,25 +101,17 @@ function NavigationController(props) {
   const user = auth.user;
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         {user ? (
-          <Stack.Screen
-            name="MainApp"
-            component={MainAppTabs}
-            options={{ headerShown: false }}
-          />
+          <Stack.Screen name="MainApp" component={MainAppTabs} />
         ) : (
           <>
-            <Stack.Screen
-              options={{ headerShown: false }}
-              name="Login"
-              component={LoginScreen}
-            />
-            <Stack.Screen
-              options={{ headerShown: false }}
-              name="Signup"
-              component={SignupScreen}
-            />
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Signup" component={SignupScreen} />
           </>
         )}
       </Stack.Navigator>
