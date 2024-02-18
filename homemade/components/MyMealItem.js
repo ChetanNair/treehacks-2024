@@ -94,8 +94,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: "30%",
     alignItems: "center",
-    marginBottom: "10%",
-    marginTop: 15
+    marginTop: -7
   },
   cancelButtonText: {
     fontFamily: "Nunito_400Regular",
@@ -103,6 +102,7 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   buttonContainer: {
+    width: "100%",
     flexDirection: "row",
     justifyContent: "flex-end"
   }
