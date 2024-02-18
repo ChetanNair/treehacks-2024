@@ -1,7 +1,7 @@
 import { View, Image, TextInput } from "react-native";
 
 export const CustomInput = ({
-  asset = "../assets/user.png",
+  asset = require("../assets/user.png"),
   placeholder,
   state,
   setState,
@@ -26,14 +26,14 @@ export const CustomInput = ({
     >
       <Image
         resizeMode="contain"
-        source={require("../assets/user.png")}
+        source={asset}
         style={{ width: 24, height: 24, alignSelf: "center" }}
       />
       <TextInput
         style={{
           width: 300,
           height: 60,
-          color: "#9E9E9E",
+          color: "black",
           fontSize: 20,
           borderRadius: 20,
           paddingHorizontal: 12,

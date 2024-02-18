@@ -18,6 +18,7 @@ export const HomeScreen = ({ navigation }) => {
           state={searchText}
           setState={handleSearch}
           placeholder="Search"
+          asset={require("../assets/home.png")}
         />
         <Image source={require("../assets/filter.png")} style={styles.image} />
       </View>
