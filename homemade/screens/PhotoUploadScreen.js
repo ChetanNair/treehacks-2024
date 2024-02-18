@@ -10,18 +10,31 @@ import {
   Pressable,
 } from "react-native";
 import { supabase } from "../initSupabase";
+import * as ImagePicker from "expo-image-picker";
+
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export const SignupScreen = (props) => {
+export const PhotoUploadScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPass, setConfirmPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [bio, setBio] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setSelectedImage(result.assets[0].uri);
+    } else {
+      alert("You did not select any image.");
+    }
+  };
+
   const handleSignup = async () => {
-    props.navigation.navigate("PhotoUpload");
-    return;
     const {
       data: { session },
       error,
@@ -68,48 +81,107 @@ export const SignupScreen = (props) => {
             fontFamily: "Nunito_700Bold",
             textAlign: "center",
             fontSize: 40,
-            marginTop: 40,
+            paddingTop: 40,
           }}
-          source={require("../assets/logo_temp.png")}
         >
-          Create an Account
+          Setting Up Profile
         </Text>
       </View>
-      <View style={{ flex: 0.9 }}>
-        <View style={{ flex: 0.8, justifyContent: "space-around" }}>
-          <CustomInput
-            state={firstName}
-            setState={setFirstName}
-            placeholder="First Name"
-            asset={"../assets/profile.png"}
-          />
-          <CustomInput
-            state={lastName}
-            setState={setLastName}
-            placeholder="Last Name"
-            asset={"../assets/profile.png"}
-          />
-          <CustomInput
-            state={email}
-            setState={setEmail}
-            placeholder="Email"
-            asset={"../assets/profile.png"}
-          />
-          <CustomInput
-            state={password}
-            password
-            setState={setPassword}
-            placeholder="Password"
-            asset={"../assets/profile.png"}
-          />
-          <CustomInput
-            state={confirmPass}
-            password
-            setState={setConfirmPassword}
-            placeholder="Confirm Password"
-            asset={"../assets/profile.png"}
-          />
+      <View style={{ flex: 1 }}>
+        <View
+          style={{
+            flex: 0.6,
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          {selectedImage === null ? (
+            <TouchableOpacity
+              onPress={pickImageAsync}
+              style={{
+                width: 200,
+                height: 200,
+                borderRadius: 100,
+                marginVertical: 20,
+                backgroundColor: "#ffdbbd",
+                //   borderWidth: 1,
+                borderColor: "#ff851b",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                resizeMode="contain"
+                source={require("../assets/camera.png")}
+                style={{ width: 40, height: 40, tintColor: "#ff851b" }}
+              />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              onPress={pickImageAsync}
+              style={{
+                width: 200,
+                height: 200,
+                borderRadius: 100,
+                marginVertical: 20,
+                backgroundColor: "#ffdbbd",
+                //   borderWidth: 1,
+                borderColor: "#ff851b",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                resizeMode="resize"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: 100,
+                  marginVertical: 20,
+                  borderColor: "#ff851b",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                source={{ uri: selectedImage }}
+              />
+            </TouchableOpacity>
+          )}
+          <Text
+            style={{
+              width: "100%",
+              height: "100%",
+              fontFamily: "Nunito_600SemiBold",
+              textAlign: "center",
+              fontSize: 24,
+            }}
+          >
+            Upload Profile Photo
+          </Text>
         </View>
+        <View style={{ flex: 0.4 }}></View>
+        <TextInput
+          style={{
+            width: 300,
+            paddingLeft: 20,
+            paddingTop: 10,
+            height: 160,
+            color: "#9E9E9E",
+            fontSize: 16,
+            borderRadius: 20,
+            borderWidth: 1,
+            paddingHorizontal: 12,
+            fontFamily: "Nunito_400Regular",
+          }}
+          autoCorrect={false}
+          numberOfLines={4}
+          multiline={true}
+          placeholderTextColor={"#9E9E9E"}
+          placeholder={"Optional: Add a Bio"}
+          value={bio}
+          autoCapitalize="none"
+          secureTextEntry={password}
+          onChangeText={(newVal) => setBio(newVal)}
+        />
 
         <View
           style={{
@@ -124,7 +196,7 @@ export const SignupScreen = (props) => {
               paddingHorizontal: 4,
               paddingVertical: 8,
               borderRadius: 12,
-              width: 140,
+              width: 220,
               alignItems: "center",
               backgroundColor: "#ff851b",
             }}
@@ -137,7 +209,7 @@ export const SignupScreen = (props) => {
                 fontFamily: "Nunito_600SemiBold",
               }}
             >
-              Next
+              Create Account
             </Text>
           </TouchableOpacity>
         </View>

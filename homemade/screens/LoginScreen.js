@@ -85,8 +85,8 @@ export const LoginScreen = (props) => {
             <Text
               style={{
                 fontSize: 24,
-                color: "#fae8c5",
-                fontFamily: "Nunito_400Regular",
+                color: "white",
+                fontFamily: "Nunito_600SemiBold",
               }}
             >
               Login

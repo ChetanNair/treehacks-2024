@@ -33,6 +33,7 @@ import { PaymentScreen } from "./screens/PaymentScreen";
 import { DetailScreen } from "./screens/DetailScreen";
 import { MapScreen } from "./screens/MapScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
+import { PhotoUploadScreen } from "./screens/PhotoUploadScreen";
 import { AuthContext, AuthProvider } from "./providers/authContext";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -132,6 +133,7 @@ function NavigationController(props) {
           <>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Signup" component={SignupScreen} />
+            <Stack.Screen name="PhotoUpload" component={PhotoUploadScreen} />
           </>
         )}
       </Stack.Navigator>
