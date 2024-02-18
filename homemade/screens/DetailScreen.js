@@ -68,7 +68,7 @@ export const DetailScreen = ({ navigation, route }) => {
               {renderPlates(meal.num_plates_available, meal.total_plates)}
             </View>
             <CustomButton
-              title={"Pull Up"}
+              title={"Join"}
               onPress={() => navigation.navigate("PaymentScreen", { meal })}
             />
           </View>
