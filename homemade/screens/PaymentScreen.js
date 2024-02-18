@@ -2,11 +2,15 @@ import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState, useEffect } from "react";
+import { formatTimestamp } from "../util/formatTimestamp";
 const placeholder = "https://toriavey.com/images/2011/01/TOA109_18-1.jpeg";
 
-export const PaymentScreen = ({ navigation }) => {
-  const [numPlates, setNumPlates] = useState(3);
-  const [price, setPrice] = useState(25);
+export const PaymentScreen = ({ navigation, route }) => {
+  // const [numPlates, setNumPlates] = useState(3);
+  const { meal } = route.params;
+  const price = meal.price;
+  const numPlates = meal.num_plates_available;
+  console.log(numPlates);
   const [platesArray, setPlatesArray] = useState(() => {
     const arr = new Array(numPlates).fill(false);
     if (arr.length > 0) {
@@ -30,6 +34,17 @@ export const PaymentScreen = ({ navigation }) => {
   const numberOfSelectedPlates = platesArray.filter(
     (value) => value === true
   ).length;
+
+  let time = "9 AM";
+  if (meal.time === "Breakfast") {
+    time = "8:15 AM";
+  } else if (meal.time === "Lunch") {
+    time = "12 PM";
+  } else if (meal.time === "Brunch") {
+    time = "11 AM";
+  } else if (meal.time === "Dinner") {
+    time = "6:30 PM";
+  }
 
   return (
     <SafeAreaView
@@ -85,7 +100,7 @@ export const PaymentScreen = ({ navigation }) => {
             aspectRatio: 1,
             borderRadius: 8,
           }}
-          source={{ uri: placeholder }}
+          source={{ uri: meal.photo_url }}
         />
         <View
           style={{
@@ -96,16 +111,18 @@ export const PaymentScreen = ({ navigation }) => {
             alignItems: "center",
             flexDirection: "column",
             justifyContent: "space-evenly",
+
+            marginLeft: -44,
           }}
         >
           <Text
             style={{
               fontFamily: "Nunito_600SemiBold",
               fontSize: 20,
-              marginLeft: -12,
+              alignSelf: "flex-start",
             }}
           >
-            Falafel Plate with Hummus
+            {meal.name}
           </Text>
 
           <View
@@ -116,38 +133,48 @@ export const PaymentScreen = ({ navigation }) => {
               // marginLeft: 12,
             }}
           >
-            <Text style={{ fontFamily: "Nunito_400Regular", fontSize: 18 }}>
-              Lunch on February 17 @ 12 PM
+            <Text
+              style={{
+                fontFamily: "Nunito_400Regular",
+                fontSize: 18,
+                paddingBottom: 8,
+              }}
+            >
+              {`${meal.meal_type} on ${formatTimestamp(meal.time)} @ ${time}`}
             </Text>
 
             <View
               style={{
                 flexDirection: "row",
                 alignSelf: "flex-start",
-                marginLeft: 8,
-                marginTop: 4,
+                // marginLeft: 8,
+                // paddingTop: 4,
+                // marginTop: 4,
+
                 alignItems: "center",
               }}
             >
               <Image
                 resizeMode="contain"
                 style={{
-                  width: 20,
-                  height: 20,
-                  tintColor: "black",
+                  // height: "100%",
+                  aspectRatio: 1,
+                  width: 30,
+                  height: 30,
+                  // width: "100%",
                   borderRadius: 20,
-                  backgroundColor: "green",
                 }}
-                source={require("../assets/user_filled.png")}
+                source={{ uri: meal.host.profile_pic }}
               />
               <Text
                 style={{
-                  marginLeft: 8,
+                  paddingLeft: 8,
                   fontSize: 16,
+                  width: "100%",
                   fontFamily: "Nunito_400Regular",
                 }}
               >
-                Maria
+                {meal.host.firstname}
               </Text>
             </View>
           </View>

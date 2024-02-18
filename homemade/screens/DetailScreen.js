@@ -69,7 +69,7 @@ export const DetailScreen = ({ navigation, route }) => {
             </View>
             <CustomButton
               title={"Pull Up"}
-              onPress={() => navigation.navigate("PaymentScreen")}
+              onPress={() => navigation.navigate("PaymentScreen", { meal })}
             />
           </View>
 
