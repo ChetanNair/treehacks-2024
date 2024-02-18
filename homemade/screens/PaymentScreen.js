@@ -29,7 +29,7 @@ export const PaymentScreen = ({ navigation, route }) => {
 
   const handlePayment = () => {
     console.log("Payment Successful");
-    navigation.navigate("HomeScreen");
+    setTimeout(() => navigation.navigate("HomeScreen"), 2500);
   };
   const numberOfSelectedPlates = platesArray.filter(
     (value) => value === true
@@ -69,7 +69,9 @@ export const PaymentScreen = ({ navigation, route }) => {
             left: 10,
             top: 18,
           }}
-          onPress={() => navigation.goBack()}
+          onPress={() => {
+            setTimeout(() => navigation.goBack(), 2500);
+          }}
         >
           <Image
             resizeMode="contain"

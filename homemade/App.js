@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useContext, useCallback } from "react";
-import { Image } from "react-native";
+import { Image, LogBox } from "react-native";
 import {
   useFonts,
   Nunito_200ExtraLight,
@@ -39,7 +39,8 @@ import { AuthContext, AuthProvider } from "./providers/authContext";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
+LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 function LogoTitle() {
   return (
     <Image
