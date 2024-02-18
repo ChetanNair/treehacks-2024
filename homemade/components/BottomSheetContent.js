@@ -1,42 +1,58 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import Slider from '@react-native-community/slider';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from "react-native";
+import Slider from "@react-native-community/slider";
 
 const BottomSheetContent = ({ onClose }) => {
-
   const [distance, setDistance] = useState(0);
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      style={{ paddingTop: 40, marginTop: 40 }}
+    >
       <View style={styles.header}>
         <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-          <Text>X</Text>
+          <Text
+            style={{ position: "absolute", top: -18, left: 30, fontSize: 30 }}
+          >
+            X
+          </Text>
         </TouchableOpacity>
         <Text style={styles.title}>Filters</Text>
-        <View style={styles.divider} /> 
+        <View style={styles.divider} />
       </View>
-      <View style={styles.divider} /> 
-      <Image 
-            source={require("../assets/filters.jpg")} 
-            style={styles.image} 
-          />
-    </View>
+      <View style={styles.divider} />
+      <Image
+        resizeMode="contain"
+        source={require("../assets/filter2.png")}
+        style={styles.image}
+      />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    padding: 22,
-    justifyContent: 'center',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    marginHorizontal: '5%',
+    backgroundColor: "white",
+    // padding: 22,
+    paddingTop: 40,
+    marginBottom: 90,
+    justifyContent: "center",
+    borderRadius: 20,
+    // borderTopRightRadius: 20,
+    marginHorizontal: "7%",
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between', // Align X button to left and Title to right
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between", // Align X button to left and Title to right
   },
   closeButton: {
     marginRight: 0, // Add marginRight to create space between X and Filter
@@ -52,9 +68,9 @@ const styles = StyleSheet.create({
     color: "#121212",
   },
   divider: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#D9D9D9',
-    marginVertical: 10, 
+    // borderBottomWidth: 1,
+    // borderBottomColor: "#D9D9D9",
+    marginVertical: 10,
   },
   distanceText: {
     marginTop: 10,
@@ -63,10 +79,13 @@ const styles = StyleSheet.create({
     color: "#999898",
   },
   image: {
-    width: '80%',
+    flex: 1,
+    width: "100%",
+    // marginLeft: -57,
     height: 800,
-    resizeMode: "cover"
-  }
+    resizeMode: "contain",
+    borderWidth: 0,
+  },
 });
 
 export default BottomSheetContent;
