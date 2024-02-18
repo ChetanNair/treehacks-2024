@@ -1,18 +1,12 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TextInput,
-} from "react-native";
+import { View, Text, Image, StyleSheet, TextInput } from "react-native";
 import { CustomButton } from "../components/CustomButton";
 import { ReviewList } from "../components/ReviewList";
 
 export const ProfileScreen = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [bio, setBio] = useState(
-    "Hi! I’m Anne-Marie, a recent college graduate from the U.S. looking to travel the world! My favorite part of traveling is trying new foods and making new friends! When I’m not traveling or working, I love to code, eat, and read. I’m looking forward to meeting you!"
+    "Hi! I’m Rohan, a recent college graduate from the U.S. looking to travel the world! My favorite part of traveling is trying new foods and making new friends! When I’m not traveling or working, I love to code, eat, and read. I’m looking forward to meeting you!"
   );
 
   const handleEditProfile = () => {
@@ -25,45 +19,14 @@ export const ProfileScreen = () => {
 
   const reviewsData = [
     {
-      reviewerName: "Yolanda",
+      reviewerName: "Rohan",
       rating: 4,
       reviewDate: "01/31/24",
       reviewText:
-        "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
-      imageUrl:
-        "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
-    },
-    {
-      reviewerName: "Yolanda",
-      rating: 4,
-      reviewDate: "01/31/24",
-      reviewText:
-        "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
-      imageUrl:
-        "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
-    },
-    {
-      reviewerName: "Yolanda",
-      rating: 4,
-      reviewDate: "01/31/24",
-      reviewText:
-        "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
-      imageUrl:
-        "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
-    },
-    {
-      reviewerName: "Yolanda",
-      rating: 4,
-      reviewDate: "01/31/24",
-      reviewText:
-        "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
-      imageUrl:
-        "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
+        "Meeting Sam was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
+      imageUrl: "https://media.licdn.com/dms/image/C5603AQEzCuXokkSkcw/profile-displayphoto-shrink_400_400/0/1655422150005?e=1714003200&v=beta&t=bFDJrdrDtNiE6TCrVgDJEfYcMLuR4lEj7utSsCjufVg",
     },
   ];
-
-
-  
 
   return (
     <View style={styles.container}>
@@ -80,7 +43,7 @@ export const ProfileScreen = () => {
           marginBottom: 20,
         }}
       >
-        Anne-Marie Amberly
+        Rohan
       </Text>
       {isEditing ? (
         <>
@@ -117,7 +80,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF",
   },
   imageContainer: {
     width: 120,
@@ -158,5 +121,5 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontFamily: "Nunito_400Regular",
     fontSize: 15,
-  }
+  },
 });
