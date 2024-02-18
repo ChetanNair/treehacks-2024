@@ -165,7 +165,6 @@ SplashScreen.preventAutoHideAsync();
 
 // Main navigation setup
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   let [fontsLoaded, fontError] = useFonts({
     Nunito_200ExtraLight,
     Nunito_300Light,
