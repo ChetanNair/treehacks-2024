@@ -2,7 +2,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useState, useContext, useCallback } from "react";
+import { useContext, useCallback } from "react";
 import { Image } from "react-native";
 import {
   useFonts,
@@ -148,7 +148,7 @@ function NavigationController(props) {
           headerShown: false,
         }}
       >
-        {user ? (
+        {true ? (
           <Stack.Screen name="MainApp" component={MainAppTabs} />
         ) : (
           <>

@@ -5,9 +5,7 @@ import {
   Alert,
   TextInput,
   Image,
-  Button,
   TouchableOpacity,
-  Pressable,
 } from "react-native";
 import { supabase } from "../initSupabase";
 import { useState } from "react";
