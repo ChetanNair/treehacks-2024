@@ -20,7 +20,6 @@ export const ReviewCard = ({
     }
     return stars;
   };
-
   return (
     <View style={styles.card}>
       <View style={styles.details}>
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     marginBottom: 10,
     width: "100%",
-    height: 150
+    height: 150,
   },
   image: {
     width: 50,

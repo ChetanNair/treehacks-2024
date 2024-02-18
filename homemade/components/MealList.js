@@ -66,19 +66,21 @@ const host = {
 };
 
 // Main component
-export const MealList = ({ navigation }) => {
+export const MealList = ({ navigation, meals }) => {
   const renderItem = ({ item }) => (
     <MealItem
       meal={item}
       host={host}
-      onPress={() => navigation.navigate("DetailScreen")} // TODO: Add in props here from the item.
+      onPress={() => navigation.navigate("DetailScreen", {
+        meal: item
+      })} // TODO: Add in props here from the item.
     />
   );
 
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
-      data={DATA}
+      data={meals}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
     />

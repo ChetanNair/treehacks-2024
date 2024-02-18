@@ -27,7 +27,6 @@ export const PaymentScreen = ({ navigation }) => {
     console.log("Payment Successful");
     navigation.navigate("HomeScreen");
   };
-  console.log(platesArray);
   const numberOfSelectedPlates = platesArray.filter(
     (value) => value === true
   ).length;

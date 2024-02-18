@@ -5,10 +5,10 @@ export const ProfileCard = ({ user }) => {
   return (
     <View style={styles.profileContainer}>
       <View style={styles.container}>
-        <Image source={{ uri: user.url }} style={styles.image} />
+        <Image source={{ uri: user.profile_pic }} style={styles.image} />
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{user.firstname}</Text>
-          <Text style={styles.speaks}>{user.languages}</Text>
+          <Text style={styles.speaks}>Speaks {user.languages.join(", ")}</Text>
         </View>
         <View style={styles.ratingContainer}>
           <Text style={styles.star}>★</Text>

@@ -16,7 +16,6 @@ import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export const PhotoUploadScreen = ({ route: { params }, ...props }) => {
-  console.log(params);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState("");

@@ -36,6 +36,7 @@ import { ProfileScreen } from "./screens/ProfileScreen";
 import { MyMealsScreen } from "./screens/MyMealsScreen";
 import { PhotoUploadScreen } from "./screens/PhotoUploadScreen";
 import { AuthContext, AuthProvider } from "./providers/authContext";
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -180,8 +181,6 @@ function MainAppTabs() {
 function NavigationController(props) {
   const auth = useContext(AuthContext);
   const user = auth.user;
-  
-  console.log(user?.id);
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -189,7 +188,7 @@ function NavigationController(props) {
           headerShown: false,
         }}
       >
-        {user ? ( // TODO: FIX
+        {true ? ( // TODO: FIX
           <Stack.Screen name="MainApp" component={MainAppTabs} />
         ) : (
           <>

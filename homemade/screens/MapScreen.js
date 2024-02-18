@@ -1,66 +1,56 @@
-import React from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, Image } from "react-native";
 import MapView, { Marker, Callout } from "react-native-maps";
 import { useState } from "react";
+import { supabase } from "../initSupabase";
 
 const placeholder = "https://toriavey.com/images/2011/01/TOA109_18-1.jpeg";
-const FAKE_MARKERS = [
-  {
-    latitude: 37.99093378207929,
-    longitude: 23.727087241410256,
-    hostName: "Andrew Gerges",
-    description: "The Best Food in Town",
-  },
-  {
-    latitude: 37.96093378207729,
-    longitude: 23.717087241450256,
-    hostName: "Yolanda Maria",
-    description: "A warm and cozy place",
-  },
-  {
-    latitude: 37.96993378207729,
-    longitude: 23.707087241450256,
-    hostName: "Seb Losada",
-    description: "A warm and cozy place",
-  },
-  {
-    latitude: 37.98493378207729,
-    longitude: 23.735087241450256,
-    hostName: "Alex Lopez",
-    description: "A warm and cozy place",
-  },
-  {
-    latitude: 37.96493378207729,
-    longitude: 23.747087241450256,
-    hostName: "Yalcin Alkan",
-    description: "A warm and cozy place",
-  },
-];
 
 export const MapScreen = ({ navigation }) => {
-  const [markers, setMarkers] = useState(FAKE_MARKERS);
-  if (!markers) {
-    return <Text>Loading...</Text>;
+  const [meals, setMeals] = useState();
+
+  useEffect(() => {
+    async function getMeals() {
+      try {
+        const { data, error } = await supabase
+          .from("meal")
+          .select("*, host(*)");
+        setMeals(data);
+        console.log(error);
+        if (error) {
+          alert(error);
+        }
+      } catch (error) {
+        console.log(error);
+        alert(error);
+      }
+    }
+    getMeals();
+  }, []);
+
+  if (!meals) {
+    return <></>;
   }
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <MapView
         loadingEnabled={true}
         initialRegion={{
-          latitude: 37.99093378207929,
-          longitude: 23.727087241410256,
+          latitude: 37.380341296741314,
+          longitude: -5.961909271962847,
           latitudeDelta: 0.05,
           longitudeDelta: 0.05,
         }}
         style={{ width: "100%", height: "100%" }}
       >
-        {markers.map((marker, index) => {
+        {meals.map((meal, index) => {
           return (
             <Marker
               key={index}
               coordinate={{
-                latitude: marker.latitude,
-                longitude: marker.longitude,
+                latitude: parseFloat(meal.latitude),
+                longitude: parseFloat(meal.longitude),
               }}
             >
               <>
@@ -72,7 +62,7 @@ export const MapScreen = ({ navigation }) => {
                 <Callout
                   tooltip
                   onPress={() => {
-                    navigation.navigate("DetailScreen");
+                    navigation.navigate("DetailScreen", { meal });
                   }}
                   style={{
                     backgroundColor: "white",
@@ -92,7 +82,7 @@ export const MapScreen = ({ navigation }) => {
                     }}
                   >
                     <Image
-                      source={{ uri: placeholder }}
+                      source={{ uri: meal.photo_url }}
                       style={{
                         flex: 1,
                         borderTopLeftRadius: 12,
@@ -119,7 +109,7 @@ export const MapScreen = ({ navigation }) => {
                         }}
                         numberOfLines={1}
                       >
-                        {marker.description}
+                        {meal.description}
                       </Text>
                       <Text
                         style={{
@@ -130,7 +120,7 @@ export const MapScreen = ({ navigation }) => {
                         }}
                         numberOfLines={1}
                       >
-                        {`Meet ${marker.hostName}`}
+                        {`Meet ${meal.host.firstname}`}
                       </Text>
                     </View>
                   </View>

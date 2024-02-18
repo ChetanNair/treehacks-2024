@@ -1,77 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, View, Text, Image, StyleSheet } from "react-native";
 import { LeftChevron } from "../components/LeftChevron";
 import { CustomButton } from "../components/CustomButton";
 import { ProfileCard } from "../components/ProfileCard";
 import { ReviewList } from "../components/ReviewList";
+import { formatTimestamp } from "../util/formatTimestamp";
+import { supabase } from "../initSupabase";
 
-const placeholder = "https://toriavey.com/images/2011/01/TOA109_18-1.jpeg";
-
-const host = {
-  firstname: "Maria",
-  lastname: "Maria",
-  bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. ",
-  url: "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
-  languages: "English",
-  rating: "4.3",
-};
-
-const reviewsData = [
-  {
-    reviewerName: "Yolanda",
-    rating: 4,
-    reviewDate: "01/31/24",
-    reviewText:
-      "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
-    imageUrl:
-      "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
-  },
-  {
-    reviewerName: "Yolanda",
-    rating: 4,
-    reviewDate: "01/31/24",
-    reviewText:
-      "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
-    imageUrl:
-      "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
-  },
-  {
-    reviewerName: "Yolanda",
-    rating: 4,
-    reviewDate: "01/31/24",
-    reviewText:
-      "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
-    imageUrl:
-      "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
-  },
-  {
-    reviewerName: "Yolanda",
-    rating: 4,
-    reviewDate: "01/31/24",
-    reviewText:
-      "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
-    imageUrl:
-      "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
-  },
-];
-
-const meal = {
-  name: "Falafel Plate with Hummus",
-  distance: "2.0",
-  date: "Lunch on February 17 @ 12pm",
-  price: "25",
-  available_plates: 3,
-  total_plates: 5,
-  description:
-    "Join our family for a classic Greek meal: featuring crispy chickpea patties infused with Mediterranean flavors, served alongside creamy hummus and fresh veggies, nestled in warm pita bread.",
-};
-
-const placeholder_data = {
-  meal: meal,
-  host: host,
-};
-
-export const DetailScreen = ({ navigation }) => {
+export const DetailScreen = ({ navigation, route }) => {
+  const [reviews, setReviews] = useState(undefined);
+  const [loading, setLoading] = useState(true);
+  const { meal } = route.params;
   const renderPlates = (available, total) => {
     let plates = [];
     for (let i = 1; i <= total; i++) {
@@ -83,30 +22,50 @@ export const DetailScreen = ({ navigation }) => {
     }
     return plates;
   };
+
+  useEffect(() => {
+    setLoading(true);
+    async function getReviews() {
+      try {
+        const { data, error } = await supabase
+          .from("review")
+          .select("*, host:host(*)")
+          .eq("meal_id", meal.id);
+        setReviews(data);
+        if (error) {
+          alert(error);
+        }
+      } catch (error) {
+        console.log(error);
+        alert(error);
+      }
+    }
+    getReviews();
+    setLoading(false);
+  }, []);
+
+  if (!reviews) {
+    return <Text>Hello</Text>;
+  }
   return (
     <View style={{ backgroundColor: "white" }}>
       <LeftChevron navigation={navigation} />
       <ScrollView>
-        <Image source={{ uri: placeholder }} style={styles.image} />
+        <Image source={{ uri: meal.photo_url }} style={styles.image} />
         <View style={styles.container}>
           {/* Meal Details */}
           <View style={styles.titleContainer}>
-            <Text style={styles.mealTitle}>{placeholder_data.meal.name}</Text>
-            <Text style={styles.distance}>
-              {placeholder_data.meal.distance} mi
-            </Text>
+            <Text style={styles.mealTitle}>{meal.name}</Text>
+            <Text style={styles.distance}>{meal.distance} mi</Text>
           </View>
 
-          <Text style={styles.mealDate}>{placeholder_data.meal.date}</Text>
-          <Text
-            style={styles.mealPrice}
-          >{`$${placeholder_data.meal.price} per plate`}</Text>
+          <Text style={styles.mealDate}>
+            {meal.meal_type} on {formatTimestamp(meal.time)}
+          </Text>
+          <Text style={styles.mealPrice}>{`$${meal.price} per plate`}</Text>
           <View style={styles.platesContainer}>
-            <View style={{flexDirection: "row"}}>
-              {renderPlates(
-                placeholder_data.meal.available_plates,
-                placeholder_data.meal.total_plates
-              )}
+            <View style={{ flexDirection: "row" }}>
+              {renderPlates(meal.available_plates, meal.total_plates)}
             </View>
             <CustomButton
               title={"Pull Up"}
@@ -115,9 +74,7 @@ export const DetailScreen = ({ navigation }) => {
           </View>
 
           {/* Description */}
-          <Text style={styles.mealDescription}>
-            {placeholder_data.meal.description}
-          </Text>
+          <Text style={styles.mealDescription}>{meal.description}</Text>
 
           <CustomButton
             title={"View Dietary Information"}
@@ -128,8 +85,8 @@ export const DetailScreen = ({ navigation }) => {
 
           {/* Host Information */}
           <Text style={styles.hostTitle}>About Your Host</Text>
-          <ProfileCard user={placeholder_data.host} />
-          <ReviewList reviews={reviewsData} />
+          <ProfileCard user={meal.host} />
+          <ReviewList reviews={reviews} />
         </View>
       </ScrollView>
     </View>
@@ -169,7 +126,7 @@ const styles = StyleSheet.create({
   mealPrice: {
     fontSize: 17,
     color: "grey",
-    marginBottom: "1.5%"
+    marginBottom: "1.5%",
   },
   platesContainer: {
     flexDirection: "row",

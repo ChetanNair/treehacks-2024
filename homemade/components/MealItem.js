@@ -1,31 +1,35 @@
 import React from "react";
 import { View, Image, Text, StyleSheet, Pressable } from "react-native";
+import { formatTimestamp } from "../util/formatTimestamp";
 
-export const MealItem = ({ meal, onPress, host }) => (
-  <Pressable onPress={onPress}>
-    <View style={styles.item}>
-      <Image source={{ uri: meal.url }} style={styles.mealImage} />
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <View style={{ flexDirection: "column" }}>
-          <Text style={styles.title}>{meal.title}</Text>
-          <Text style={styles.date}>{meal.date}</Text>
-          <Text style={styles.cost}>${meal.price} per plate</Text>
-        </View>
-        <View>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Image source={{ uri: host.url }} style={styles.hostImage} />
-            <Text style={styles.hostName}>{host.firstname}</Text>
+export const MealItem = ({ meal, onPress, host }) => {
+  return (
+    <Pressable onPress={onPress}>
+      <View style={styles.item}>
+        <Image source={{ uri: meal.photo_url }} style={styles.mealImage} />
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <View style={{ flexDirection: "column" }}>
+            <Text style={styles.title}>{meal.name}</Text>
+            <Text style={styles.date}>
+              {meal.meal_type} on {formatTimestamp(meal.time)}
+            </Text>
+            <Text style={styles.cost}>${meal.price} per plate</Text>
           </View>
-          <View style={styles.ratingContainer}>
-            <Text style={styles.star}>★</Text>
-            <Text style={styles.rating}>{meal.rating}</Text>
+          <View>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Image source={{ uri: meal.host.profile_pic }} style={styles.hostImage} />
+              <Text style={styles.hostName}>{meal.host.firstname}</Text>
+            </View>
+            <View style={styles.ratingContainer}>
+              <Text style={styles.star}>★</Text>
+              <Text style={styles.rating}>{meal.host.rating}</Text>
+            </View>
           </View>
         </View>
       </View>
-    </View>
-  </Pressable>
-);
-
+    </Pressable>
+  );
+};
 const styles = StyleSheet.create({
   item: {
     marginVertical: "5%",

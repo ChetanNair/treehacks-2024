@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { SearchBar, Image, BottomSheet } from "react-native-elements";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet } from "react-native";
+import { Image, BottomSheet } from "react-native-elements";
 import { MealList } from "../components/MealList";
 import { CustomInput } from "../components/CustomInput";
 import BottomSheetContent from "../components/BottomSheetContent";
 import { supabase } from "../initSupabase";
-import { useEffect } from "react";
 export const HomeScreen = ({ navigation }) => {
+  const [meals, setMeals] = useState();
   const [searchText, setSearchText] = useState("");
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
@@ -23,13 +23,24 @@ export const HomeScreen = ({ navigation }) => {
   };
 
   useEffect(() => {
-    async function getUsers() {
-      const { data, error } = await supabase.from("user").select();
-      console.log(data);
-      console.log(error);
+    async function getMeals() {
+      try {
+        const { data, error } = await supabase
+          .from("meal")
+          .select("*, host(*)");
+        setMeals(data);
+        console.log(error);
+        if (error) {
+          alert(error);
+        }
+      } catch (error) {
+        console.log(error);
+        alert(error);
+      }
     }
-    getUsers();
+    getMeals();
   }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
@@ -41,7 +52,7 @@ export const HomeScreen = ({ navigation }) => {
         />
         <Image source={require("../assets/filter.png")} style={styles.image} />
       </View>
-      <MealList navigation={navigation} style={styles.mealList} />
+      <MealList navigation={navigation} style={styles.mealList} meals={meals} />
       <BottomSheet isVisible={bottomSheetVisible} onClose={closeBottomSheet}>
         <BottomSheetContent onClose={closeBottomSheet} />
       </BottomSheet>
