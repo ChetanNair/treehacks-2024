@@ -95,18 +95,21 @@ export const SignupScreen = (props) => {
             state={email}
             setState={setEmail}
             placeholder="Email"
+            asset={require("../assets/email.png")}
           />
           <CustomInput
             state={password}
             password
             setState={setPassword}
             placeholder="Password"
+            asset={require("../assets/padlock.png")}
           />
           <CustomInput
             state={confirmPass}
             password
             setState={setConfirmPassword}
             placeholder="Confirm Password"
+            asset={require("../assets/padlock.png")}
           />
         </View>
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { supabase } from "../initSupabase";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CustomInput } from "../components/CustomInput";
+import { MaterialIcons } from '@expo/vector-icons';
 
 export const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
@@ -49,6 +50,7 @@ export const LoginScreen = (props) => {
             password
             setState={setPassword}
             placeholder="Password"
+            asset={require("../assets/padlock.png")}
           />
         </View>
 
