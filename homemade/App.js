@@ -2,8 +2,28 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useState, useContext } from "react";
+import { useState, useContext, useCallback } from "react";
 import { Image } from "react-native";
+import {
+  useFonts,
+  Nunito_200ExtraLight,
+  Nunito_300Light,
+  Nunito_400Regular,
+  Nunito_500Medium,
+  Nunito_600SemiBold,
+  Nunito_700Bold,
+  Nunito_800ExtraBold,
+  Nunito_900Black,
+  Nunito_200ExtraLight_Italic,
+  Nunito_300Light_Italic,
+  Nunito_400Regular_Italic,
+  Nunito_500Medium_Italic,
+  Nunito_600SemiBold_Italic,
+  Nunito_700Bold_Italic,
+  Nunito_800ExtraBold_Italic,
+  Nunito_900Black_Italic,
+} from "@expo-google-fonts/nunito";
+import * as SplashScreen from "expo-splash-screen";
 
 // Import Screens
 import { LoginScreen } from "./screens/LoginScreen";
@@ -139,12 +159,43 @@ function NavigationController(props) {
     </NavigationContainer>
   );
 }
+SplashScreen.preventAutoHideAsync();
 
 // Main navigation setup
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  let [fontsLoaded, fontError] = useFonts({
+    Nunito_200ExtraLight,
+    Nunito_300Light,
+    Nunito_400Regular,
+    Nunito_500Medium,
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+    Nunito_800ExtraBold,
+    Nunito_900Black,
+    Nunito_200ExtraLight_Italic,
+    Nunito_300Light_Italic,
+    Nunito_400Regular_Italic,
+    Nunito_500Medium_Italic,
+    Nunito_600SemiBold_Italic,
+    Nunito_700Bold_Italic,
+    Nunito_800ExtraBold_Italic,
+    Nunito_900Black_Italic,
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+  console.log(fontsLoaded);
+
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider onLayout={onLayoutRootView}>
       <AuthProvider>
         <NavigationController />
       </AuthProvider>

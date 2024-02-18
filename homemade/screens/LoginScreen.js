@@ -33,8 +33,7 @@ export const LoginScreen = (props) => {
         alignItems: "center",
         backgroundColor: "white",
         paddingTop: 40,
-        // justifyContent: "center",
-        // position: "relative",
+        fontFamily: "Nunito_400Regular",
       }}
     >
       <View style={{ flex: 0.4, width: "100%" }}>
@@ -83,12 +82,21 @@ export const LoginScreen = (props) => {
             }}
             onPress={handleLogin}
           >
-            <Text style={{ fontSize: 24, color: "#fae8c5" }}>Login</Text>
+            <Text
+              style={{
+                fontSize: 24,
+                color: "#fae8c5",
+                fontFamily: "Nunito_400Regular",
+              }}
+            >
+              Login
+            </Text>
           </TouchableOpacity>
           <View style={{ alignItems: "center" }}>
-            <Text style={{ fontSize: 16 }}>Don't Have an Account?</Text>
+            <Text style={{ fontSize: 16, fontFamily: "Nunito_400Regular" }}>
+              Don't Have an Account?
+            </Text>
             <TouchableOpacity
-              title="Sign Up Here"
               style={{ alignItems: "center", marginTop: 4 }}
               onPress={() => props.navigation.navigate("Signup")}
             >
@@ -97,6 +105,7 @@ export const LoginScreen = (props) => {
                   fontSize: 16,
                   textDecorationLine: "underline",
                   color: "#ff851b",
+                  fontFamily: "Nunito_400Regular",
                 }}
               >
                 Sign up Here!
@@ -146,6 +155,7 @@ const CustomInput = ({
           fontSize: 20,
           borderRadius: 20,
           paddingHorizontal: 12,
+          fontFamily: "Nunito_400Regular",
         }}
         autoCorrect={false}
         numberOfLines={1}
