@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     marginBottom: 10,
     width: "100%",
+    minHeight: 150,
   },
   image: {
     width: 50,

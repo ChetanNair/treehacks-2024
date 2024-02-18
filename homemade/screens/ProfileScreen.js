@@ -24,17 +24,15 @@ export const ProfileScreen = () => {
       reviewDate: "01/31/24",
       reviewText:
         "Meeting Sam was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
-      imageUrl: "https://media.licdn.com/dms/image/C5603AQEzCuXokkSkcw/profile-displayphoto-shrink_400_400/0/1655422150005?e=1714003200&v=beta&t=bFDJrdrDtNiE6TCrVgDJEfYcMLuR4lEj7utSsCjufVg",
+      imageUrl:
+        "https://media.licdn.com/dms/image/C5603AQEzCuXokkSkcw/profile-displayphoto-shrink_400_400/0/1655422150005?e=1714003200&v=beta&t=bFDJrdrDtNiE6TCrVgDJEfYcMLuR4lEj7utSsCjufVg",
     },
   ];
 
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image
-          source={require("../assets/exampleprofile.png")}
-          style={styles.image}
-        />
+        <Image source={{ uri: reviewsData[0].imageUrl }} style={styles.image} />
       </View>
       <Text
         style={{
