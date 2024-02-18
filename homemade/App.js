@@ -131,6 +131,7 @@ function MainAppTabs() {
         name="My Meals"
         component={MyMealsScreen}
         options={{
+          headerTitle: (props) => <LogoTitle {...props} />, 
           tabBarIcon: ({ size, focused }) =>
             focused ? (
               <Image
@@ -149,6 +150,7 @@ function MainAppTabs() {
         name="Profile"
         component={ProfileScreen}
         options={{
+          headerTitle: (props) => <LogoTitle {...props} />, 
           tabBarIcon: ({ size, focused }) =>
             focused ? (
               <Image
