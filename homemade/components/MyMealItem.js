@@ -1,15 +1,16 @@
 import React from "react";
 import { View, Image, Text, StyleSheet, Pressable } from "react-native";
+import { CustomButton } from "./CustomButton";
 
-export const MealItem = ({ meal, onPress, host }) => (
+export const MyMealItem = ({ meal, onPress, host }) => (
   <Pressable onPress={onPress}>
     <View style={styles.item}>
-      <Image source={{ uri: meal.url }} style={styles.mealImage} />
+    <Image source={{ uri: meal.url }} style={styles.mealImage} />
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <View style={{ flexDirection: "column" }}>
           <Text style={styles.title}>{meal.title}</Text>
           <Text style={styles.date}>{meal.date}</Text>
-          <Text style={styles.cost}>${meal.price} per plate</Text>
+          <Text style={styles.cost}>{meal.numPlates}</Text>
         </View>
         <View>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -22,6 +23,20 @@ export const MealItem = ({ meal, onPress, host }) => (
           </View>
         </View>
       </View>
+      {
+        meal.cancellable
+        ?
+        <View style={styles.buttonContainer}>
+          <CustomButton
+              title={"Cancel"}
+              onPress={() => alert('Are you sure you want to cancel this meal?')}
+              customButtonStyles={styles.cancelButton}
+              customTextStyles={styles.cancelButtonText}
+            />
+        </View>
+        :
+        <Text style={styles.date}>{meal.location}</Text>
+      }
     </View>
   </Pressable>
 );
@@ -72,4 +87,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
   },
+  cancelButton: {
+    paddingHorizontal: 0,
+    paddingVertical: 8,
+    borderRadius: "7.5%",
+    borderWidth: 1,
+    width: "30%",
+    alignItems: "center",
+    marginBottom: "10%",
+    marginTop: 15
+  },
+  cancelButtonText: {
+    fontFamily: "Nunito_400Regular",
+    color: "black",
+    fontSize: 18
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-end"
+  }
 });
