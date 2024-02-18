@@ -4,7 +4,7 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 export const MealItem = ({ title, description, imageUrl, rating, onPress }) => (
   <TouchableOpacity onPress={onPress}>
     <View style={styles.item}>
-      <Image source={{ uri: imageUrl }} style={styles.image} />
+      <Image source={{uri: imageUrl}} style={styles.image} />
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
       <Text style={styles.rating}>{rating}</Text>

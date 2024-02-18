@@ -38,10 +38,23 @@ import { AuthContext, AuthProvider } from "./providers/authContext";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+function LogoTitle() {
+  return (
+    <Image
+      style={{ width: 200, height: 30, resizeMode: "contain" }}
+      source={require("./assets/homemadetext.png")}
+    />
+  );
+}
+
 function MapScreenStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="MapScreen" component={MapScreen} />
+      <Stack.Screen
+        name="MapScreen"
+        component={MapScreen}
+        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
+      />
       <Stack.Screen name="DetailScreen" component={DetailScreen} />
       <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
     </Stack.Navigator>
@@ -51,8 +64,16 @@ function MapScreenStack() {
 function HomeScreenStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="DetailScreen" component={DetailScreen} />
+      <Stack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
+      />
+      <Stack.Screen
+        name="DetailScreen"
+        component={DetailScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
     </Stack.Navigator>
   );
@@ -127,7 +148,7 @@ function NavigationController(props) {
           headerShown: false,
         }}
       >
-        {user ? (
+        {true ? (
           <Stack.Screen name="MainApp" component={MainAppTabs} />
         ) : (
           <>

@@ -2,7 +2,6 @@ import React from "react";
 import { FlatList } from "react-native";
 import { MealItem } from "./MealItem";
 
-
 const placeholder = "https://toriavey.com/images/2011/01/TOA109_18-1.jpeg"
 
 // Sample data for the list
