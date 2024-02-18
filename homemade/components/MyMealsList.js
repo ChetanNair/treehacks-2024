@@ -83,7 +83,6 @@ export const MyMealsList = ({ navigation }) => {
     <MyMealItem
       meal={item}
       host={host}
-      onPress={() => navigation.navigate("DetailScreen")}
     />
   );
 
