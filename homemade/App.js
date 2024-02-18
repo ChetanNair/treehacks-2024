@@ -188,7 +188,7 @@ function NavigationController(props) {
           headerShown: false,
         }}
       >
-        {true ? ( // TODO: FIX
+        {user ? ( // TODO: FIX
           <Stack.Screen name="MainApp" component={MainAppTabs} />
         ) : (
           <>
