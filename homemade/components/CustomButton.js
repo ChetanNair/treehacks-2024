@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   text: {
-    fontFamily: "Nunito_400Regular",
-    fontSize: 16,
+    fontFamily: "Nunito_600SemiBold",
+    fontSize: 20,
     color: "white"
   },
 });
