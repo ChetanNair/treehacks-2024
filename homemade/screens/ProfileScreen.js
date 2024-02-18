@@ -62,6 +62,9 @@ export const ProfileScreen = () => {
     },
   ];
 
+
+  
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
