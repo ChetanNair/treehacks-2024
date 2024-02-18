@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { CustomButton } from "../components/CustomButton";
 
-export const ProfileScreen = ({ navigation }) => {
+export const ProfileScreen = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [bio, setBio] = useState(
     "Hi! I’m Anne-Marie, a recent college graduate from the U.S. looking to travel the world! My favorite part of traveling is trying new foods and making new friends! When I’m not traveling or working, I love to code, eat, and read. I’m looking forward to meeting you!"
@@ -113,5 +113,5 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontFamily: "Nunito_400Regular",
     fontSize: 15,
-  },
+  }
 });
