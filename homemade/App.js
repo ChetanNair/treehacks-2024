@@ -55,7 +55,11 @@ function MapScreenStack() {
         component={MapScreen}
         options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
       />
-      <Stack.Screen name="DetailScreen" component={DetailScreen} />
+      <Stack.Screen
+        name="DetailScreen"
+        options={{ headerShown: false }}
+        component={DetailScreen}
+      />
       <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
     </Stack.Navigator>
   );
@@ -88,12 +92,18 @@ function MainAppTabs() {
         component={HomeScreenStack}
         options={{
           headerShown: false,
-          tabBarIcon: ({ size }) => (
-            <Image
-              source={require("./assets/home.png")}
-              style={{ width: size, height: size }}
-            />
-          ),
+          tabBarIcon: ({ size, focused }) =>
+            focused ? (
+              <Image
+                source={require("./assets/home.png")}
+                style={{ width: size, height: size, tintColor: "#ff851b" }}
+              />
+            ) : (
+              <Image
+                source={require("./assets/home.png")}
+                style={{ width: size, height: size }}
+              />
+            ),
         }}
       />
       <Tab.Screen
@@ -101,12 +111,18 @@ function MainAppTabs() {
         component={MapScreenStack}
         options={{
           headerShown: false,
-          tabBarIcon: ({ size }) => (
-            <Image
-              source={require("./assets/map.png")}
-              style={{ width: size, height: size }}
-            />
-          ),
+          tabBarIcon: ({ size, focused }) =>
+            focused ? (
+              <Image
+                source={require("./assets/map.png")}
+                style={{ width: size, height: size, tintColor: "#ff851b" }}
+              />
+            ) : (
+              <Image
+                source={require("./assets/map.png")}
+                style={{ width: size, height: size }}
+              />
+            ),
         }}
       />
       {/* TODO: Change component */}
@@ -114,24 +130,36 @@ function MainAppTabs() {
         name="My Meals"
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ size }) => (
-            <Image
-              source={require("./assets/meal.png")}
-              style={{ width: size, height: size }}
-            />
-          ),
+          tabBarIcon: ({ size, focused }) =>
+            focused ? (
+              <Image
+                source={require("./assets/meal.png")}
+                style={{ width: size, height: size, tintColor: "#ff851b" }}
+              />
+            ) : (
+              <Image
+                source={require("./assets/meal.png")}
+                style={{ width: size, height: size }}
+              />
+            ),
         }}
       />
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ size }) => (
-            <Image
-              source={require("./assets/profile.png")}
-              style={{ width: size, height: size }}
-            />
-          ),
+          tabBarIcon: ({ size, focused }) =>
+            focused ? (
+              <Image
+                source={require("./assets/profile.png")}
+                style={{ width: size, height: size, tintColor: "#ff851b" }}
+              />
+            ) : (
+              <Image
+                source={require("./assets/profile.png")}
+                style={{ width: size, height: size }}
+              />
+            ),
         }}
       />
     </Tab.Navigator>
@@ -148,7 +176,7 @@ function NavigationController(props) {
           headerShown: false,
         }}
       >
-        {user ? (
+        {true ? ( // TODO: FIX
           <Stack.Screen name="MainApp" component={MainAppTabs} />
         ) : (
           <>
@@ -193,7 +221,6 @@ function App() {
   if (!fontsLoaded && !fontError) {
     return null;
   }
-  console.log(fontsLoaded);
 
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
