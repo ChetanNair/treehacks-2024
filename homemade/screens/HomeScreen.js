@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Image, BottomSheet } from "react-native-elements";
 import { MealList } from "../components/MealList";
 import { CustomInput } from "../components/CustomInput";
@@ -50,7 +50,12 @@ export const HomeScreen = ({ navigation }) => {
           placeholder="Search"
           asset={require("../assets/home.png")}
         />
-        <Image source={require("../assets/filter.png")} style={styles.image} />
+        <TouchableOpacity onPress={openBottomSheet}>
+          <Image 
+            source={require("../assets/filter.png")} 
+            style={styles.image} 
+          />
+        </TouchableOpacity>
       </View>
       <MealList navigation={navigation} style={styles.mealList} meals={meals} />
       <BottomSheet isVisible={bottomSheetVisible} onClose={closeBottomSheet}>

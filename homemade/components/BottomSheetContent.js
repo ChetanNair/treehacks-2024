@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Slider from '@react-native-community/slider';
 
 const BottomSheetContent = ({ onClose }) => {
@@ -16,18 +16,10 @@ const BottomSheetContent = ({ onClose }) => {
         <View style={styles.divider} /> 
       </View>
       <View style={styles.divider} /> 
-      <Text style={styles.subtitle}>Distance</Text>
-      <Slider
-        style={{ width: '100%', marginTop: 10 }}
-        minimumValue={0}
-        maximumValue={50}
-        minimumTrackTintColor="#FF851B"
-        maximumTrackTintColor="#000000"
-        thumbTintColor="#FF851B"
-        value={distance}
-        onValueChange={(value) => setDistance(value)}
-      />
-      <Text style={styles.distanceText}>{distance.toFixed(2)} km</Text>
+      <Image 
+            source={require("../assets/filters.jpg")} 
+            style={styles.image} 
+          />
     </View>
   );
 };
@@ -69,6 +61,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "Nunito_400Regular",
     color: "#999898",
+  },
+  image: {
+    width: '80%',
+    height: 800,
+    resizeMode: "cover"
   }
 });
 
