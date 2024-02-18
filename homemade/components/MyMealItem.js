@@ -1,45 +1,55 @@
 import React from "react";
 import { View, Image, Text, StyleSheet, Pressable } from "react-native";
 import { CustomButton } from "./CustomButton";
+import { formatTimestamp } from "../util/formatTimestamp";
 
-export const MyMealItem = ({ meal, host }) => (
-  <Pressable>
-    <View style={styles.item}>
-    <Image source={{ uri: meal.url }} style={styles.mealImage} />
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <View style={{ flexDirection: "column" }}>
-          <Text style={styles.title}>{meal.title}</Text>
-          <Text style={styles.date}>{meal.date}</Text>
-          <Text style={styles.cost}>{meal.numPlates}</Text>
-        </View>
-        <View>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Image source={{ uri: host.url }} style={styles.hostImage} />
-            <Text style={styles.hostName}>{host.firstname}</Text>
+export const MyMealItem = ({ meal, host }) => {
+  if (meal.name === "Spanish Paella") {
+    meal.location = "1 Sevilla Ave, Sevilla, Spain"; // TODO: Fix
+    meal.cancellable = true;
+  }
+  return (
+    <Pressable>
+      <View style={styles.item}>
+        <Image source={{ uri: meal.photo_url }} style={styles.mealImage} />
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <View style={{ flexDirection: "column" }}>
+            <Text style={styles.title}>{meal.name}</Text>
+            <Text style={styles.date}>{formatTimestamp(meal.time)}</Text>
+            <Text style={styles.cost}>${meal.price} per plate</Text>
           </View>
-          <View style={styles.ratingContainer}>
-            <Text style={styles.star}>★</Text>
-            <Text style={styles.rating}>{meal.rating}</Text>
+          <View>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Image
+                source={{ uri: host.profile_pic }}
+                style={styles.hostImage}
+              />
+              <Text style={styles.hostName}>{host.firstname}</Text>
+            </View>
+            <View style={styles.ratingContainer}>
+              <Text style={styles.star}>★</Text>
+              <Text style={styles.rating}>{meal.rating}</Text>
+            </View>
           </View>
         </View>
-      </View>
-      {
-        meal.cancellable
-        ?
-        <View style={styles.buttonContainer}>
-          <CustomButton
+        {meal.cancellable ? (
+          <View style={styles.buttonContainer}>
+            <CustomButton
               title={"Cancel"}
-              onPress={() => alert('Are you sure you want to cancel this meal?')}
+              onPress={() =>
+                alert("Are you sure you want to cancel this meal?")
+              }
               customButtonStyles={styles.cancelButton}
               customTextStyles={styles.cancelButtonText}
             />
-        </View>
-        :
-        <Text style={styles.date}>{meal.location}</Text>
-      }
-    </View>
-  </Pressable>
-);
+          </View>
+        ) : (
+          <Text style={styles.date}>{meal.location}</Text>
+        )}
+      </View>
+    </Pressable>
+  );
+};
 
 const styles = StyleSheet.create({
   item: {
@@ -94,16 +104,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: "30%",
     alignItems: "center",
-    marginTop: -7
+    marginTop: -7,
   },
   cancelButtonText: {
     fontFamily: "Nunito_400Regular",
     color: "black",
-    fontSize: 18
+    fontSize: 18,
   },
   buttonContainer: {
     width: "100%",
     flexDirection: "row",
-    justifyContent: "flex-end"
-  }
+    justifyContent: "flex-end",
+  },
 });

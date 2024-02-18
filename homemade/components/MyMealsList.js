@@ -78,18 +78,18 @@ const host = {
 };
 
 // Main component
-export const MyMealsList = ({ navigation }) => {
+export const MyMealsList = ({ navigation, meals }) => {
   const renderItem = ({ item }) => (
     <MyMealItem
-      meal={item}
-      host={host}
+      meal={item.meal}
+      host={item.host}
     />
   );
 
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
-      data={DATA}
+      data={meals}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
     />

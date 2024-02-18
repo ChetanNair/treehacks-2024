@@ -16,11 +16,11 @@ export const DetailScreen = ({ navigation, route }) => {
     for (let i = 1; i <= total; i++) {
       plates.push(
         <Text key={i} style={styles.plate}>
-          {i <= available ? "●" : "○"}
+          {i <= parseInt(available) ? "○" : "●"}
         </Text>
       );
     }
-    return plates;
+    return plates.reverse();
   };
 
   useEffect(() => {
@@ -65,11 +65,11 @@ export const DetailScreen = ({ navigation, route }) => {
           <Text style={styles.mealPrice}>{`$${meal.price} per plate`}</Text>
           <View style={styles.platesContainer}>
             <View style={{ flexDirection: "row" }}>
-              {renderPlates(meal.available_plates, meal.total_plates)}
+              {renderPlates(meal.num_plates_available, meal.total_plates)}
             </View>
             <CustomButton
               title={"Pull Up"}
-              onPress={() => navigation.navigate("PaymentScreen")}
+              onPress={() => navigation.navigate("PaymentScreen", { meal })}
             />
           </View>
 
