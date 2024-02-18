@@ -49,7 +49,7 @@ const DATA = [
   {
     id: "6",
     title: "Item 2",
-    description: "Lunch on February 18",
+    date: "Lunch on February 18",
     url: placeholder,
     rating: "4.7",
     price: 25
