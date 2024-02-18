@@ -20,7 +20,12 @@ export const SignupScreen = (props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const handleSignup = async () => {
-    props.navigation.navigate("PhotoUpload");
+    props.navigation.navigate("PhotoUpload", {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+    });
     return;
     const {
       data: { session },
