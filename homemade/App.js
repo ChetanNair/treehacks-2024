@@ -2,7 +2,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useState, useContext, useCallback } from "react";
+import { useContext, useCallback } from "react";
 import { Image } from "react-native";
 import {
   useFonts,
@@ -33,6 +33,7 @@ import { PaymentScreen } from "./screens/PaymentScreen";
 import { DetailScreen } from "./screens/DetailScreen";
 import { MapScreen } from "./screens/MapScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
+import { MyMealsScreen } from "./screens/MyMealsScreen";
 import { PhotoUploadScreen } from "./screens/PhotoUploadScreen";
 import { AuthContext, AuthProvider } from "./providers/authContext";
 const Stack = createNativeStackNavigator();
@@ -60,7 +61,11 @@ function MapScreenStack() {
         options={{ headerShown: false }}
         component={DetailScreen}
       />
-      <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PaymentScreen"
+        component={PaymentScreen}
+      />
     </Stack.Navigator>
   );
 }
@@ -78,7 +83,11 @@ function HomeScreenStack() {
         component={DetailScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PaymentScreen"
+        component={PaymentScreen}
+      />
     </Stack.Navigator>
   );
 }
@@ -128,8 +137,9 @@ function MainAppTabs() {
       {/* TODO: Change component */}
       <Tab.Screen
         name="My Meals"
-        component={ProfileScreen}
+        component={MyMealsScreen}
         options={{
+          headerTitle: (props) => <LogoTitle {...props} />, 
           tabBarIcon: ({ size, focused }) =>
             focused ? (
               <Image
@@ -148,6 +158,7 @@ function MainAppTabs() {
         name="Profile"
         component={ProfileScreen}
         options={{
+          headerTitle: (props) => <LogoTitle {...props} />, 
           tabBarIcon: ({ size, focused }) =>
             focused ? (
               <Image

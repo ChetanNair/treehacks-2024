@@ -7,6 +7,7 @@ import {
   TextInput,
 } from "react-native";
 import { CustomButton } from "../components/CustomButton";
+import { ReviewList } from "../components/ReviewList";
 
 export const ProfileScreen = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -21,6 +22,45 @@ export const ProfileScreen = () => {
   const handleSaveProfile = () => {
     setIsEditing(false);
   };
+
+  const reviewsData = [
+    {
+      reviewerName: "Yolanda",
+      rating: 4,
+      reviewDate: "01/31/24",
+      reviewText:
+        "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
+      imageUrl:
+        "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
+    },
+    {
+      reviewerName: "Yolanda",
+      rating: 4,
+      reviewDate: "01/31/24",
+      reviewText:
+        "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
+      imageUrl:
+        "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
+    },
+    {
+      reviewerName: "Yolanda",
+      rating: 4,
+      reviewDate: "01/31/24",
+      reviewText:
+        "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
+      imageUrl:
+        "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
+    },
+    {
+      reviewerName: "Yolanda",
+      rating: 4,
+      reviewDate: "01/31/24",
+      reviewText:
+        "Meeting Maria was genuinely the highlight of my trip. I think I've made a friend for life <3 - one that cooks some of the best food I've ever had!",
+      imageUrl:
+        "https://dlzvpuc9ucfb7.cloudfront.net/Andrew_Gerges_8fdd72d6c2.jpg",
+    },
+  ];
 
   return (
     <View style={styles.container}>
@@ -52,6 +92,7 @@ export const ProfileScreen = () => {
               onChangeText={setBio}
             />
             <Text style={styles.headerText}>My Past Reviews</Text>
+            <ReviewList reviews={reviewsData} />
           </View>
         </>
       ) : (
@@ -61,6 +102,7 @@ export const ProfileScreen = () => {
             <Text style={styles.headerText}>Bio</Text>
             <Text style={styles.bioText}>{bio}</Text>
             <Text style={styles.headerText}>My Past Reviews</Text>
+            <ReviewList reviews={reviewsData} />
           </View>
         </>
       )}

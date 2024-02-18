@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Text,
-  TextInput,
-  Button,
   Image,
   View,
   TouchableOpacity,
@@ -10,6 +8,7 @@ import {
 import { useState } from "react";
 import { supabase } from "../initSupabase";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { CustomInput } from "../components/CustomInput"
 
 export const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
@@ -47,18 +46,17 @@ export const LoginScreen = (props) => {
         <View
           style={{ flex: 0.4, justifyContent: "space-evenly", paddingTop: 20 }}
         >
+          {/* TODO: Add assets */}
           <CustomInput
             state={email}
             setState={setEmail}
             placeholder="Email"
-            asset={"../assets/profile.png"}
           />
           <CustomInput
             state={password}
             password
             setState={setPassword}
             placeholder="Password"
-            asset={"../assets/profile.png"}
           />
         </View>
 
@@ -115,57 +113,5 @@ export const LoginScreen = (props) => {
         </View>
       </View>
     </SafeAreaView>
-  );
-};
-
-const CustomInput = ({
-  asset,
-  placeholder,
-  state,
-  setState,
-  password,
-  margin,
-}) => {
-  return (
-    <View
-      style={{
-        width: 300,
-        height: 50,
-        fontSize: 32,
-        // borderWidth: 1,
-        borderRadius: 20,
-        flexDirection: "row",
-        paddingHorizontal: 12,
-        backgroundColor: "FFC691",
-        borderWidth: 1.5,
-        borderColor: "#9e9e9e",
-        alignItems: "center",
-      }}
-    >
-      <Image
-        resizeMode="contain"
-        source={require("../assets/user.png")}
-        style={{ width: 24, height: 24, alignSelf: "center" }}
-      />
-      <TextInput
-        style={{
-          width: 300,
-          height: 60,
-          color: "#9E9E9E",
-          fontSize: 20,
-          borderRadius: 20,
-          paddingHorizontal: 12,
-          fontFamily: "Nunito_400Regular",
-        }}
-        autoCorrect={false}
-        numberOfLines={1}
-        placeholderTextColor={"#9E9E9E"}
-        placeholder={placeholder}
-        value={state}
-        autoCapitalize="none"
-        secureTextEntry={password}
-        onChangeText={(newVal) => setState(newVal)}
-      />
-    </View>
   );
 };
