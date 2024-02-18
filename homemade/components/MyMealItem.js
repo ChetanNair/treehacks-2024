@@ -2,8 +2,8 @@ import React from "react";
 import { View, Image, Text, StyleSheet, Pressable } from "react-native";
 import { CustomButton } from "./CustomButton";
 
-export const MyMealItem = ({ meal, onPress, host }) => (
-  <Pressable onPress={onPress}>
+export const MyMealItem = ({ meal, host }) => (
+  <Pressable>
     <View style={styles.item}>
     <Image source={{ uri: meal.url }} style={styles.mealImage} />
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -94,8 +94,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: "30%",
     alignItems: "center",
-    marginBottom: "10%",
-    marginTop: 15
+    marginTop: -7
   },
   cancelButtonText: {
     fontFamily: "Nunito_400Regular",
@@ -103,6 +102,7 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   buttonContainer: {
+    width: "100%",
     flexDirection: "row",
     justifyContent: "flex-end"
   }

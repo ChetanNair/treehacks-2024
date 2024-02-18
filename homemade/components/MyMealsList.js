@@ -11,7 +11,7 @@ const DATA = [
     title: "Falafel Plate with Hummus",
     date: "Lunch on February 20 @ 12pm",
     numPlates: "2 plates",
-    imageUrl: placeholder,
+    url: placeholder,
     rating: "4.5",
     cancellable: true,
     location: "1 Greece Ave, Athens, Greece"
@@ -21,7 +21,7 @@ const DATA = [
     title: "Seared Scallops with Pea Puree",
     date: "Dinner on February 17 @ 12pm",
     numPlates: "2 plates",
-    imageUrl: placeholder,
+    url: placeholder,
     rating: "4.5",
     cancellable: false,
     location: "1 Greece Ave, Athens, Greece"
@@ -31,7 +31,7 @@ const DATA = [
     title: "Falafel Plate with Hummus",
     date: "Lunch on February 20 @ 12pm",
     numPlates: "2 plates",
-    imageUrl: placeholder,
+    url: placeholder,
     rating: "4.5",
     cancellable: false,
     location: "1 Greece Ave, Athens, Greece"
@@ -41,7 +41,7 @@ const DATA = [
     title: "Falafel Plate with Hummus",
     date: "Lunch on February 20 @ 12pm",
     numPlates: "2 plates",
-    imageUrl: placeholder,
+    url: placeholder,
     rating: "4.5",
     cancellable: true,
     location: "1 Greece Ave, Athens, Greece"
@@ -51,7 +51,7 @@ const DATA = [
     title: "Falafel Plate with Hummus",
     date: "Lunch on February 20 @ 12pm",
     numPlates: "2 plates",
-    imageUrl: placeholder,
+    url: placeholder,
     rating: "4.5",
     cancellable: true,
     location: "1 Greece Ave, Athens, Greece"
@@ -61,7 +61,7 @@ const DATA = [
     title: "Falafel Plate with Hummus",
     date: "Lunch on February 20 @ 12pm",
     numPlates: "2 plates",
-    imageUrl: placeholder,
+    url: placeholder,
     rating: "4.5",
     cancellable: false,
     location: "1 Greece Ave, Athens, Greece"
@@ -83,7 +83,6 @@ export const MyMealsList = ({ navigation }) => {
     <MyMealItem
       meal={item}
       host={host}
-      onPress={() => navigation.navigate("DetailScreen")}
     />
   );
 
