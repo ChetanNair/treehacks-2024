@@ -1,14 +1,9 @@
 import React from "react";
-import {
-  Text,
-  Image,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import { Text, Image, View, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { supabase } from "../initSupabase";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { CustomInput } from "../components/CustomInput"
+import { CustomInput } from "../components/CustomInput";
 
 export const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
@@ -21,6 +16,7 @@ export const LoginScreen = (props) => {
     if (!error && !user) {
       console.log("Something went wrong");
     }
+    console.log(user);
     if (error) {
       alert(error); // TODO: Wrong email / password
     }
@@ -47,11 +43,7 @@ export const LoginScreen = (props) => {
           style={{ flex: 0.4, justifyContent: "space-evenly", paddingTop: 20 }}
         >
           {/* TODO: Add assets */}
-          <CustomInput
-            state={email}
-            setState={setEmail}
-            placeholder="Email"
-          />
+          <CustomInput state={email} setState={setEmail} placeholder="Email" />
           <CustomInput
             state={password}
             password

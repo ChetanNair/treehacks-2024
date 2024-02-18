@@ -3,8 +3,9 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { SearchBar, Image, BottomSheet } from "react-native-elements";
 import { MealList } from "../components/MealList";
 import { CustomInput } from "../components/CustomInput";
-import BottomSheetContent from '../components/BottomSheetContent';
-
+import BottomSheetContent from "../components/BottomSheetContent";
+import { supabase } from "../initSupabase";
+import { useEffect } from "react";
 export const HomeScreen = ({ navigation }) => {
   const [searchText, setSearchText] = useState("");
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
@@ -21,6 +22,14 @@ export const HomeScreen = ({ navigation }) => {
     setBottomSheetVisible(false);
   };
 
+  useEffect(() => {
+    async function getUsers() {
+      const { data, error } = await supabase.from("user").select();
+      console.log(data);
+      console.log(error);
+    }
+    getUsers();
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
@@ -33,10 +42,7 @@ export const HomeScreen = ({ navigation }) => {
         <Image source={require("../assets/filter.png")} style={styles.image} />
       </View>
       <MealList navigation={navigation} style={styles.mealList} />
-      <BottomSheet
-        isVisible={bottomSheetVisible}
-        onClose={closeBottomSheet}
-      >
+      <BottomSheet isVisible={bottomSheetVisible} onClose={closeBottomSheet}>
         <BottomSheetContent onClose={closeBottomSheet} />
       </BottomSheet>
     </View>

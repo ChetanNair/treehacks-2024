@@ -139,7 +139,7 @@ function MainAppTabs() {
         name="My Meals"
         component={MyMealsScreen}
         options={{
-          headerTitle: (props) => <LogoTitle {...props} />, 
+          headerTitle: (props) => <LogoTitle {...props} />,
           tabBarIcon: ({ size, focused }) =>
             focused ? (
               <Image
@@ -158,7 +158,7 @@ function MainAppTabs() {
         name="Profile"
         component={ProfileScreen}
         options={{
-          headerTitle: (props) => <LogoTitle {...props} />, 
+          headerTitle: (props) => <LogoTitle {...props} />,
           tabBarIcon: ({ size, focused }) =>
             focused ? (
               <Image
@@ -180,6 +180,8 @@ function MainAppTabs() {
 function NavigationController(props) {
   const auth = useContext(AuthContext);
   const user = auth.user;
+  
+  console.log(user?.id);
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -187,7 +189,7 @@ function NavigationController(props) {
           headerShown: false,
         }}
       >
-        {true ? ( // TODO: FIX
+        {user ? ( // TODO: FIX
           <Stack.Screen name="MainApp" component={MainAppTabs} />
         ) : (
           <>
