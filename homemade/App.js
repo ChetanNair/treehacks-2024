@@ -60,7 +60,11 @@ function MapScreenStack() {
         options={{ headerShown: false }}
         component={DetailScreen}
       />
-      <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PaymentScreen"
+        component={PaymentScreen}
+      />
     </Stack.Navigator>
   );
 }
@@ -78,7 +82,11 @@ function HomeScreenStack() {
         component={DetailScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="PaymentScreen"
+        component={PaymentScreen}
+      />
     </Stack.Navigator>
   );
 }

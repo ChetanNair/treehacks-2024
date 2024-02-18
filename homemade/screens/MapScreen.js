@@ -115,7 +115,7 @@ export const MapScreen = ({ navigation }) => {
                         style={{
                           width: "90%",
                           textAlign: "left",
-                          fontFamily: "Nunito_400Regular",
+                          fontFamily: "Nunito_600SemiBold",
                         }}
                         numberOfLines={1}
                       >
@@ -126,7 +126,7 @@ export const MapScreen = ({ navigation }) => {
                           width: "90%",
                           textAlign: "left",
                           color: "#9e9e9e",
-                          fontFamily: "Nunito_300Light,",
+                          fontFamily: "Nunito_400Regular,",
                         }}
                         numberOfLines={1}
                       >

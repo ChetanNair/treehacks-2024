@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { SearchBar, Image } from "react-native-elements"; 
+import { SearchBar, Image } from "react-native-elements";
 import { MealList } from "../components/MealList";
 
 export const HomeScreen = ({ navigation }) => {
@@ -13,29 +13,32 @@ export const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
-      <SearchBar
-        placeholder="Search"
-        onChangeText={handleSearch}
-        value={searchText}
-        containerStyle={{
-          backgroundColor: "transparent",
-          paddingHorizontal: 0,
-          borderWidth: 1,
-          borderColor: "black",
-          borderRadius: 30,
-          width: "70%",
-        }}
-        inputContainerStyle={{ backgroundColor: "#fff", borderRadius: 30 }}
-        inputStyle={[styles.inputStyle, searchText !== "" && { color: "black" }]}
-      />
-      <View style={styles.circle}>
+        <SearchBar
+          placeholder="Search"
+          onChangeText={handleSearch}
+          value={searchText}
+          containerStyle={{
+            backgroundColor: "transparent",
+            paddingHorizontal: 0,
+            borderWidth: 1,
+            borderColor: "black",
+            borderRadius: 30,
+            width: "70%",
+          }}
+          inputContainerStyle={{ backgroundColor: "#fff", borderRadius: 30 }}
+          inputStyle={[
+            styles.inputStyle,
+            searchText !== "" && { color: "black" },
+          ]}
+        />
+        <View style={styles.circle}>
           <Image
             source={require("../assets/filter.png")}
             style={styles.image}
           />
         </View>
       </View>
-      <MealList navigation={navigation} style={styles.mealList}/>
+      <MealList navigation={navigation} style={styles.mealList} />
     </View>
   );
 };
@@ -43,7 +46,7 @@ export const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF",
   },
   searchContainer: {
     width: "100%",
@@ -52,6 +55,7 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     flexDirection: "row",
     alignItems: "center",
+    paddingBottom: 12,
   },
   circle: {
     width: 60,
@@ -72,4 +76,3 @@ const styles = StyleSheet.create({
     marginLeft: 0,
   },
 });
-
