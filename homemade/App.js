@@ -33,6 +33,7 @@ import { PaymentScreen } from "./screens/PaymentScreen";
 import { DetailScreen } from "./screens/DetailScreen";
 import { MapScreen } from "./screens/MapScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
+import { MyMealsScreen } from "./screens/MyMealsScreen";
 import { PhotoUploadScreen } from "./screens/PhotoUploadScreen";
 import { AuthContext, AuthProvider } from "./providers/authContext";
 const Stack = createNativeStackNavigator();
@@ -128,7 +129,7 @@ function MainAppTabs() {
       {/* TODO: Change component */}
       <Tab.Screen
         name="My Meals"
-        component={ProfileScreen}
+        component={MyMealsScreen}
         options={{
           tabBarIcon: ({ size, focused }) =>
             focused ? (
