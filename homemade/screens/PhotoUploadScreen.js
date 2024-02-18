@@ -15,7 +15,8 @@ import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export const PhotoUploadScreen = (props) => {
+export const PhotoUploadScreen = ({ route: { params }, ...props }) => {
+  console.log(params);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState("");
@@ -39,8 +40,8 @@ export const PhotoUploadScreen = (props) => {
       data: { session },
       error,
     } = await supabase.auth.signUp({
-      email: email,
-      password: password,
+      email: params.email,
+      password: params.password,
     });
 
     if (error) Alert.alert(error.message);
