@@ -23,7 +23,7 @@ export const HomeScreen = ({ navigation }) => {
           borderWidth: 1,
           borderColor: "black",
           borderRadius: 30,
-          width: 300,
+          width: "70%",
         }}
         inputContainerStyle={{ backgroundColor: "#fff", borderRadius: 30 }}
         inputStyle={[styles.inputStyle, searchText !== "" && { color: "black" }]}
@@ -35,7 +35,7 @@ export const HomeScreen = ({ navigation }) => {
           />
         </View>
       </View>
-      <MealList navigation={navigation}/>
+      <MealList navigation={navigation} style={styles.mealList}/>
     </View>
   );
 };
@@ -43,14 +43,13 @@ export const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     backgroundColor: "#FFFFFF"
   },
   searchContainer: {
     width: "100%",
     alignItems: "flex-start",
     marginTop: 20,
-    marginLeft: "10%",
+    marginLeft: "5%",
     flexDirection: "row",
     alignItems: "center",
   },
