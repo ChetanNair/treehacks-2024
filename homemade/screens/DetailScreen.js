@@ -60,6 +60,8 @@ const meal = {
   distance: "2.0",
   date: "Lunch on February 17 @ 12pm",
   price: "25",
+  available_plates: 3,
+  total_plates: 5,
   description:
     "Join our family for a classic Greek meal: featuring crispy chickpea patties infused with Mediterranean flavors, served alongside creamy hummus and fresh veggies, nestled in warm pita bread.",
 };
@@ -70,6 +72,17 @@ const placeholder_data = {
 };
 
 export const DetailScreen = ({ navigation }) => {
+  const renderPlates = (available, total) => {
+    let plates = [];
+    for (let i = 1; i <= total; i++) {
+      plates.push(
+        <Text key={i} style={styles.plate}>
+          {i <= available ? "●" : "○"}
+        </Text>
+      );
+    }
+    return plates;
+  };
   return (
     <View style={{ backgroundColor: "white" }}>
       <LeftChevron navigation={navigation} />
@@ -89,9 +102,14 @@ export const DetailScreen = ({ navigation }) => {
             style={styles.mealPrice}
           >{`$${placeholder_data.meal.price} per plate`}</Text>
           <View style={styles.platesContainer}>
-            <Text style={styles.plateIcons}>TODO: INSERT PLATES</Text>
+            <View style={{flexDirection: "row"}}>
+              {renderPlates(
+                placeholder_data.meal.available_plates,
+                placeholder_data.meal.total_plates
+              )}
+            </View>
             <CustomButton
-              title={"Reserve"}
+              title={"Pull Up"}
               onPress={() => navigation.navigate("PaymentScreen")}
             />
           </View>
@@ -138,6 +156,10 @@ const styles = StyleSheet.create({
   mealTitle: {
     fontSize: 24,
   },
+  plate: {
+    color: "#ff851b",
+    fontSize: 25,
+  },
   distance: {},
   mealDate: {
     fontSize: 18,
@@ -147,6 +169,7 @@ const styles = StyleSheet.create({
   mealPrice: {
     fontSize: 17,
     color: "grey",
+    marginBottom: "1.5%"
   },
   platesContainer: {
     flexDirection: "row",
@@ -161,7 +184,7 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
     color: "grey",
     marginBottom: "5%",
-    lineHeight: 20
+    lineHeight: 20,
   },
   dietaryButton: {
     paddingHorizontal: 0,

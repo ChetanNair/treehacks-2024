@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { SearchBar, Image } from "react-native-elements";
 import { MealList } from "../components/MealList";
+import { CustomInput } from "../components/CustomInput";
 
 export const HomeScreen = ({ navigation }) => {
   const [searchText, setSearchText] = useState("");
@@ -13,30 +14,13 @@ export const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
-        <SearchBar
+        <CustomInput
+          state={searchText}
+          setState={handleSearch}
           placeholder="Search"
-          onChangeText={handleSearch}
-          value={searchText}
-          containerStyle={{
-            backgroundColor: "transparent",
-            paddingHorizontal: 0,
-            borderWidth: 1,
-            borderColor: "black",
-            borderRadius: 30,
-            width: "70%",
-          }}
-          inputContainerStyle={{ backgroundColor: "#fff", borderRadius: 30 }}
-          inputStyle={[
-            styles.inputStyle,
-            searchText !== "" && { color: "black" },
-          ]}
+          asset={require("../assets/home.png")}
         />
-        <View style={styles.circle}>
-          <Image
-            source={require("../assets/filter.png")}
-            style={styles.image}
-          />
-        </View>
+        <Image source={require("../assets/filter.png")} style={styles.image} />
       </View>
       <MealList navigation={navigation} style={styles.mealList} />
     </View>
@@ -47,25 +31,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
+    paddingHorizontal: "5%",
   },
   searchContainer: {
     width: "100%",
-    alignItems: "flex-start",
-    marginTop: 20,
-    marginLeft: "5%",
+    alignItems: "center",
+    marginRight: "5%",
+    marginTop: "5%",
     flexDirection: "row",
-    alignItems: "center",
-    paddingBottom: 12,
-  },
-  circle: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginLeft: 20,
-    borderWidth: 1,
-    borderColor: "black",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: "5%",
   },
   image: {
     width: 40,

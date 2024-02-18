@@ -22,7 +22,7 @@ export const ProfileCard = ({ user }) => {
 
 const styles = StyleSheet.create({
   profileContainer: {
-    marginBottom: "5%"
+    marginBottom: "5%",
   },
   container: {
     flexDirection: "row",
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   image: {
     width: 65,
     height: 65,
-    borderRadius: "100%",
+    borderRadius: 32.5,
     marginRight: 10,
   },
   infoContainer: {
