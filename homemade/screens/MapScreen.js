@@ -77,6 +77,8 @@ export const MapScreen = ({ navigation }) => {
                     style={{
                       flex: 1,
                       flexDirection: "column",
+                      paddingHorizontal: 0,
+                      borderRadius: 30,
                       // paddingHorizontal: 2,
                       // paddingVertical: 4,
                     }}
@@ -85,10 +87,11 @@ export const MapScreen = ({ navigation }) => {
                       source={{ uri: meal.photo_url }}
                       style={{
                         flex: 1,
-                        borderTopLeftRadius: 12,
-                        borderTopRightRadius: 12,
+                        borderRadius: 30,
+                        // width: "100%",
+                        // height: "100%",
                       }}
-                      resizeMode="cover"
+                      resizeMode="contain"
                     />
                     <View
                       style={{
@@ -103,7 +106,7 @@ export const MapScreen = ({ navigation }) => {
                     >
                       <Text
                         style={{
-                          width: "90%",
+                          width: "12%",
                           textAlign: "left",
                           fontFamily: "Nunito_600SemiBold",
                         }}
@@ -113,7 +116,7 @@ export const MapScreen = ({ navigation }) => {
                       </Text>
                       <Text
                         style={{
-                          width: "90%",
+                          width: "12%",
                           textAlign: "left",
                           color: "#9e9e9e",
                           fontFamily: "Nunito_400Regular,",
