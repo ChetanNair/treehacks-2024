@@ -119,7 +119,6 @@ export const SignupScreen = (props) => {
         >
           <TouchableOpacity
             style={{
-              backgroundColor: "green",
               paddingHorizontal: 4,
               paddingVertical: 8,
               borderRadius: 12,
@@ -139,26 +138,6 @@ export const SignupScreen = (props) => {
               Next
             </Text>
           </TouchableOpacity>
-          {/* <View style={{ alignItems: "center" }}>
-            <Text style={{ fontSize: 16, fontFamily: "Nunito_400Regular" }}>
-              Already Have an Account?
-            </Text>
-            <TouchableOpacity
-              style={{ alignItems: "center", marginTop: 4 }}
-              onPress={() => props.navigation.navigate("Login")}
-            >
-              <Text
-                style={{
-                  fontSize: 16,
-                  textDecorationLine: "underline",
-                  color: "#ff851b",
-                  fontFamily: "Nunito_400Regular",
-                }}
-              >
-                Log in!
-              </Text>
-            </TouchableOpacity>
-          </View> */}
         </View>
       </View>
     </SafeAreaView>
