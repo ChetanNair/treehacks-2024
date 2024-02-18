@@ -1,11 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { MyMealsList } from "../components/MyMealsList";
 
 export const MyMealsScreen = ({ navigation }) => {
   
   return (
     <View style={styles.container}>
-     <Text>My Meals</Text>
+     <MyMealsList navigation={navigation} style={styles.mealList}/>
     </View>
   );
 };
@@ -13,7 +14,7 @@ export const MyMealsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "white",
+    paddingHorizontal: "5%"
   },
 });
